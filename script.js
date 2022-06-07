@@ -19,8 +19,11 @@ if ("webkitSpeechRecognition" in window) {
 
   speechRecognition.onresult = (event) => {
     let interim_transcript = "";
-
+    let mobileRepeatBug = (event.resultIndex == 1 && transcript == e.results[0][0].transcript);
+      if(!mobileRepeatBug){
+    
     for (let i = event.resultIndex; i < event.results.length; ++i) {
+      
       if (event.results[i].isFinal) {
         final_transcript += event.results[i][0].transcript;
       } 
@@ -29,12 +32,15 @@ if ("webkitSpeechRecognition" in window) {
       }
     }
     document.querySelector("#final").innerHTML = final_transcript + interim_transcript;
-  };
-
-  document.querySelector("#start").onclick = () => {
+  }
+    
     setTimeout(() => {
       speechRecognition.start();
     }, 50);
+  };
+
+  document.querySelector("#start").onclick = () => {
+      speechRecognition.start();
     // this.openFullscreen()
     document.querySelector("#status").innerHTML =`Voice Recognition is on`
   };
