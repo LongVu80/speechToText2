@@ -18,20 +18,21 @@ if ("webkitSpeechRecognition" in window) {
 
 
   speechRecognition.onresult = (event) => {
-    let interim_transcript = "";
-    let mobileRepeatBug = (event.resultIndex == 1 && transcript == e.results[0][0].transcript);
-      if(!mobileRepeatBug){
+    // let interim_transcript = "";
+    
     
     for (let i = event.resultIndex; i < event.results.length; ++i) {
-      
+      let mobileRepeatBug = (event.resultIndex == 1 && transcript == e.results[0][0].transcript);
+      if(!mobileRepeatBug){
       if (event.results[i].isFinal) {
         final_transcript += event.results[i][0].transcript;
-      } 
-      else {
-        interim_transcript += event.results[i][0].transcript;
+      // } 
+      // else {
+      //   interim_transcript += event.results[i][0].transcript;
       }
     }
-    document.querySelector("#final").innerHTML = final_transcript + interim_transcript;
+    document.querySelector("#final").innerHTML = final_transcript
+    //  + interim_transcript;
   }
     
     setTimeout(() => {
