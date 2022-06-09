@@ -18,26 +18,18 @@ if ("webkitSpeechRecognition" in window) {
 
 
   speechRecognition.onresult = (event) => {
-    // let interim_transcript = "";
-    
-    
+    let interim_transcript = "";
+
     for (let i = event.resultIndex; i < event.results.length; ++i) {
-      let mobileRepeatBug = (event.resultIndex == 1 && transcript == e.results[0][0].transcript);
-      if(!mobileRepeatBug){
       if (event.results[i].isFinal) {
         final_transcript += event.results[i][0].transcript;
-      // } 
-      // else {
-      //   interim_transcript += event.results[i][0].transcript;
+      } 
+      else {
+        interim_transcript += event.results[i][0].transcript;
       }
-    }
-    document.querySelector("#final").innerHTML = final_transcript
-    //  + interim_transcript;
-  }
+    document.querySelector("#final").innerHTML = final_transcript + interim_transcript;
     
-    setTimeout(() => {
-      speechRecognition.start();
-    }, 50);
+  };
   };
 
   document.querySelector("#start").onclick = () => {
@@ -53,7 +45,9 @@ if ("webkitSpeechRecognition" in window) {
   };
 
   document.querySelector("#clear").onclick = () => {
-    location.reload()
+    
+    document.querySelector("#final").innerHTML =""
+    // location.reload()
   };
 } else {
   console.log("Speech Recognition Not Available");
