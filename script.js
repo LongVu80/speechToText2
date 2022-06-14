@@ -21,13 +21,16 @@ if ("webkitSpeechRecognition" in window) {
     let interim_transcript = "";
 
     for (let i = event.resultIndex; i < event.results.length; ++i) {
-      if (event.results[i].isFinal) {
+      if (!(event.results[i][0].confidence > 0)) continue;
+      if (event.results[i].isFinal && event.results[i][0].confidence >= 0.7) {
         final_transcript += event.results[i][0].transcript;
       } 
       else {
         interim_transcript += event.results[i][0].transcript;
       }
+      console.log(document.querySelector("#final").innerHTML = final_transcript + interim_transcript)
     document.querySelector("#final").innerHTML = final_transcript + interim_transcript;
+    document.querySelector("#textbox").innerHTML = final_transcript + interim_transcript
     
   };
   };
@@ -51,6 +54,10 @@ if ("webkitSpeechRecognition" in window) {
   };
 } else {
   console.log("Speech Recognition Not Available");
+}
+
+function googleTranslateElementInit() {
+  new google.translate.TranslateElement({pageLanguage: 'en'}, 'google_translate_element');
 }
 
 // var elem = document.documentElement;
