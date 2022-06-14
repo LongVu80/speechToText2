@@ -9,7 +9,7 @@ if ("webkitSpeechRecognition" in window) {
     document.querySelector("#status").style.display = "block";
   };
   speechRecognition.onerror = () => {
-    document.querySelector("#status").innerHTML = `Speech Recognition Error`;
+    document.querySelector("#status").innerHTML = `Sorry, this Web Platform does not support Google Speech Regconition. Please use keyboard microphone. With keyboard microphone, you can even use your native language.`;
     
   };
   speechRecognition.onend = () => {
@@ -29,6 +29,7 @@ if ("webkitSpeechRecognition" in window) {
         interim_transcript += event.results[i][0].transcript;
       }
       console.log(document.querySelector("#final").innerHTML = final_transcript + interim_transcript)
+    // document.querySelector("#interim").innerHTML = interim_transcript;
     document.querySelector("#final").innerHTML = final_transcript + interim_transcript;
     document.querySelector("#textbox").innerHTML = final_transcript + interim_transcript
     
@@ -50,8 +51,11 @@ if ("webkitSpeechRecognition" in window) {
   document.querySelector("#clear").onclick = () => {
     
     document.querySelector("#final").innerHTML =""
-    // location.reload()
+    location.reload()
   };
+  document.querySelector('#textbox').addEventListener('change', function(e){
+  final_transcript = e.target.elements.final.value
+})
 } else {
   console.log("Speech Recognition Not Available");
 }
@@ -59,6 +63,8 @@ if ("webkitSpeechRecognition" in window) {
 function googleTranslateElementInit() {
   new google.translate.TranslateElement({pageLanguage: 'en'}, 'google_translate_element');
 }
+
+
 
 // var elem = document.documentElement;
 // function openFullscreen() {
