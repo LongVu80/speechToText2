@@ -21,6 +21,8 @@ if ("webkitSpeechRecognition" in window) {
     let interim_transcript = "";
 
     for (let i = event.resultIndex; i < event.results.length; ++i) {
+      const final = document.querySelector("#final");
+      const textbox = document.querySelector("#textbox");
       if (!(event.results[i][0].confidence > 0)) continue;
       if (event.results[i].isFinal && event.results[i][0].confidence >= 0.7) {
         final_transcript += event.results[i][0].transcript;
@@ -30,10 +32,10 @@ if ("webkitSpeechRecognition" in window) {
       }
       console.log(document.querySelector("#final").innerHTML = final_transcript + interim_transcript)
     // document.querySelector("#interim").innerHTML = interim_transcript;
-    document.querySelector("#final").innerHTML = final_transcript + interim_transcript;
+    final.innerHTML = final_transcript + interim_transcript;
     // document.querySelector("#textbox").innerHTML = final_transcript + interim_transcript
-    document.querySelector("#textbox").innerHTML = `Translation: <div class="form-control bg-dark text-light" style="border: 1px solid gray; border-radius: 8px;">${final_transcript + interim_transcript}</div>`
-    
+    textbox.innerHTML = `<strong class="text-light">Translation:</strong> <div class="form-control bg-dark text-light" style="border: 1px solid gray; border-radius: 8px;">${final_transcript + interim_transcript}</div>`
+
   };
   };
 
@@ -54,9 +56,7 @@ if ("webkitSpeechRecognition" in window) {
     document.querySelector("#final").innerHTML =""
     location.reload()
   };
-  document.querySelector('#textbox').addEventListener('change', function(e){
-  final_transcript = e.target.elements.final.value
-})
+  
 } else {
   console.log("Speech Recognition Not Available");
 }
@@ -66,7 +66,13 @@ function googleTranslateElementInit() {
   // document.querySelector("#textbox").innerHTML = `<div style="border:'2px solid white'">${final_transcript + interim_transcript}</div>`
 }
 
+document.querySelector('#final').addEventListener('input', function(e){
+  document.querySelector('#transl').innerHTML = `<strong class="text-light">Translation:</strong> <div class="form-control bg-dark text-light" style="border: 1px solid gray; border-radius: 8px;">${e.target.value}</div>`
+})
 
+document.querySelector("#translate").addEventListener('click', function(e){
+  document.querySelector('#showTranslate').innerHTML = `Translate to: <div id="google_translate_element"></div>`
+})
 
 // var elem = document.documentElement;
 // function openFullscreen() {
