@@ -31,7 +31,8 @@ if ("webkitSpeechRecognition" in window) {
       console.log(document.querySelector("#final").innerHTML = final_transcript + interim_transcript)
     // document.querySelector("#interim").innerHTML = interim_transcript;
     document.querySelector("#final").innerHTML = final_transcript + interim_transcript;
-    document.querySelector("#textbox").innerHTML = final_transcript + interim_transcript
+    // document.querySelector("#textbox").innerHTML = final_transcript + interim_transcript
+    document.querySelector("#textbox").innerHTML = `Translation: <div class="form-control bg-dark text-light" style="border: 1px solid gray; border-radius: 8px;">${final_transcript + interim_transcript}</div>`
     
   };
   };
@@ -62,6 +63,7 @@ if ("webkitSpeechRecognition" in window) {
 
 function googleTranslateElementInit() {
   new google.translate.TranslateElement({pageLanguage: 'en'}, 'google_translate_element');
+  // document.querySelector("#textbox").innerHTML = `<div style="border:'2px solid white'">${final_transcript + interim_transcript}</div>`
 }
 
 
