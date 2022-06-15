@@ -12,8 +12,8 @@
       <textarea id="final" class="form-control bg-dark text-light" style="border: 1px solid gray; border-radius: 8px;" cols="30" rows="10" name="final"></textarea>
       <!-- <span id="final" class="text-light notranslate"></span>
       <span id="interim" class="text-primary notranslate" ></span> -->
-    <div id="textbox"></div>
-    <div id="transl" ></div>
+    <div id="textbox" style="display: none;" class="text-left"></div>
+    <div id="transl" style="display: none;"></div>
       <div class="mt-4">
       <button class="btn btn-success" id="start">Start</button>
       <button class="btn btn-danger" id="stop">Stop</button>
@@ -22,9 +22,8 @@
       <button onclick="closeFullscreen()">ex</button> -->
 
       <p id="status" class="lead mt-3 text-light" >Press the Start Button</p>
-      <button id="translate">To Translate</button>
-      <div id="showTranslate"></div>
-      <br>Translate to: <div id="google_translate_element"></div>
+      <strong class="text-light" id="toTranslate">To Translate: </strong><button id="translate" class="btn btn-primary">Click me</button>
+      <div id="showTranslate" class="p-5" style="display: none;"><strong class="text-light">Translate to: </strong><div id="google_translate_element"></div></div>
       
     </div>
   </body>

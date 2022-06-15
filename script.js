@@ -30,11 +30,10 @@ if ("webkitSpeechRecognition" in window) {
       else {
         interim_transcript += event.results[i][0].transcript;
       }
-      console.log(document.querySelector("#final").innerHTML = final_transcript + interim_transcript)
-    // document.querySelector("#interim").innerHTML = interim_transcript;
+      
     final.innerHTML = final_transcript + interim_transcript;
-    // document.querySelector("#textbox").innerHTML = final_transcript + interim_transcript
-    textbox.innerHTML = `<strong class="text-light">Translation:</strong> <div class="form-control bg-dark text-light" style="border: 1px solid gray; border-radius: 8px;">${final_transcript + interim_transcript}</div>`
+    
+    textbox.innerHTML = `<strong class="text-light notranslate">Translation:</strong> <div class="form-control bg-dark text-light text-left" style="border: 1px solid gray; border-radius: 8px;">${final_transcript + interim_transcript}</div>`
 
   };
   };
@@ -63,15 +62,45 @@ if ("webkitSpeechRecognition" in window) {
 
 function googleTranslateElementInit() {
   new google.translate.TranslateElement({pageLanguage: 'en'}, 'google_translate_element');
-  // document.querySelector("#textbox").innerHTML = `<div style="border:'2px solid white'">${final_transcript + interim_transcript}</div>`
+  
 }
 
 document.querySelector('#final').addEventListener('input', function(e){
-  document.querySelector('#transl').innerHTML = `<strong class="text-light">Translation:</strong> <div class="form-control bg-dark text-light" style="border: 1px solid gray; border-radius: 8px;">${e.target.value}</div>`
+  document.querySelector('#transl').innerHTML = `<strong class="text-light notranslate">Translation:</strong> <div class="form-control bg-dark text-light" style="border: 1px solid gray; border-radius: 8px;">${e.target.value}</div>`
 })
 
 document.querySelector("#translate").addEventListener('click', function(e){
-  document.querySelector('#showTranslate').innerHTML = `Translate to: <div id="google_translate_element"></div>`
+  const textbox = document.querySelector("#textbox");
+  const transl = document.querySelector("#transl");
+  const google = document.querySelector("#showTranslate");
+  const toTranslate = document.querySelector("#toTranslate");
+  const translate = document.querySelector("#translate");
+
+  e.preventDefault()
+  if(textbox.style.display === "none"){
+    textbox.style.display = "block";
+  } else {
+    textbox.style.display = "none"
+  }
+  if(transl.style.display === "none"){
+    transl.style.display = "block";
+  } else {
+    transl.style.display = "none";
+  }
+  
+  if(google.style.display === "none"){
+    google.style.display = "block";
+    toTranslate.innerHTML = `Stop Translate: `
+    translate.style.backgroundColor = "#ff4444"
+    
+  }
+  else{
+    google.style.display = "none"
+    toTranslate.innerHTML = `To Translate: `
+    translate.style.backgroundColor = "#4285F4"
+  }
+ 
+  
 })
 
 // var elem = document.documentElement;
