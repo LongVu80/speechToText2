@@ -34,7 +34,9 @@ if ("webkitSpeechRecognition" in window) {
     final.innerHTML = final_transcript + interim_transcript;
     
     textbox.innerHTML = `<strong class="text-light notranslate">Translation:</strong> <div class="form-control bg-dark text-light text-left" style="border: 1px solid gray; border-radius: 8px;">${final_transcript + interim_transcript}</div>`
-
+    setTimeout(() => {
+      speechRecognition.start();
+    }, 50);
   };
   };
 
