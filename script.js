@@ -41,7 +41,9 @@ if ("webkitSpeechRecognition" in window) {
   };
 
   document.querySelector("#start").onclick = () => {
+    setTimeout(() => {
       speechRecognition.start();
+    }, 50);
     // this.openFullscreen()
     document.querySelector("#status").innerHTML =`Voice Recognition is on`
   };
