@@ -1,5 +1,6 @@
-if ("webkitSpeechRecognition" in window) {
-  let speechRecognition = new webkitSpeechRecognition();
+// if ("webkitSpeechRecognition" in window) {
+  let SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+  let speechRecognition = new SpeechRecognition();
   let final_transcript = "";
 
   speechRecognition.continuous = true;
@@ -8,12 +9,14 @@ if ("webkitSpeechRecognition" in window) {
   speechRecognition.onstart = () => {
     document.querySelector("#status").style.display = "block";
   };
-  speechRecognition.onerror = () => {
-    document.querySelector("#status").innerHTML = `Sorry, this Web Platform does not support Google Speech Regconition. Please use keyboard microphone. With keyboard microphone, you can even use your native language.`;
-    
-  };
+  // speechRecognition.onerror = () => {
+  //   document.querySelector("#status").innerHTML = `Sorry, this Web Platform does not support Google Speech Regconition. Please use keyboard microphone. With keyboard microphone, you can even use your native language.`;
+
+  // };
   speechRecognition.onend = () => {
-    document.querySelector("#status").innerHTML = `Speech Recognition is off due to no activity or Stop. Please press Start button again.`
+    if(document.querySelector("#stop").onclick){return}
+    speechRecognition.start()
+    // document.querySelector("#status").innerHTML = `Speech Recognition is off due to no activity or Stop. Please press Start button again.`
   };
 
 
@@ -34,16 +37,12 @@ if ("webkitSpeechRecognition" in window) {
     final.innerHTML = final_transcript + interim_transcript;
     
     textbox.innerHTML = `<strong class="text-light notranslate">Translation:</strong> <div class="form-control bg-dark text-light text-left" style="border: 1px solid gray; border-radius: 8px;">${final_transcript + interim_transcript}</div>`
-    setTimeout(() => {
-      speechRecognition.start();
-    }, 50);
+    
   };
   };
 
   document.querySelector("#start").onclick = () => {
-    setTimeout(() => {
       speechRecognition.start();
-    }, 50);
     // this.openFullscreen()
     document.querySelector("#status").innerHTML =`Voice Recognition is on`
   };
@@ -60,9 +59,9 @@ if ("webkitSpeechRecognition" in window) {
     location.reload()
   };
   
-} else {
-  console.log("Speech Recognition Not Available");
-}
+// } else {
+//   console.log("Speech Recognition Not Available");
+// }
 
 function googleTranslateElementInit() {
   new google.translate.TranslateElement({pageLanguage: 'en'}, 'google_translate_element');
