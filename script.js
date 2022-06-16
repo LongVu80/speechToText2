@@ -14,7 +14,7 @@
 
   // };
   speechRecognition.onend = () => {
-    if(document.querySelector("#stop").onclick){return}
+    // if(document.querySelector("#stop").onclick){return}
     speechRecognition.start()
     // document.querySelector("#status").innerHTML = `Speech Recognition is off due to no activity or Stop. Please press Start button again.`
   };
