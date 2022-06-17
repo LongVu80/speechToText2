@@ -1,7 +1,7 @@
 // if ("webkitSpeechRecognition" in window) {
   let SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
   let speechRecognition = new SpeechRecognition();
-  let final_transcript = "";
+  let final_transcript = " ";
 
   speechRecognition.continuous = true;
   speechRecognition.interimResults = true;
@@ -21,7 +21,7 @@
 
 
   speechRecognition.onresult = (event) => {
-    let interim_transcript = "";
+    let interim_transcript = " ";
 
     for (let i = event.resultIndex; i < event.results.length; ++i) {
       const final = document.querySelector("#final");
@@ -69,12 +69,11 @@ function googleTranslateElementInit() {
 }
 
 document.querySelector('#final').addEventListener('input', function(e){
-  document.querySelector('#transl').innerHTML = `<strong class="text-light notranslate">Translation:</strong> <div class="form-control bg-dark text-light" style="border: 1px solid gray; border-radius: 8px;">${e.target.value}</div>`
+  document.querySelector('#textbox').innerHTML = `<strong class="text-light notranslate">Translation:</strong> <div class="form-control bg-dark text-light" style="border: 1px solid gray; border-radius: 8px;">${e.target.value}</div>`
 })
 
 document.querySelector("#translate").addEventListener('click', function(e){
   const textbox = document.querySelector("#textbox");
-  const transl = document.querySelector("#transl");
   const google = document.querySelector("#showTranslate");
   const toTranslate = document.querySelector("#toTranslate");
   const translate = document.querySelector("#translate");
@@ -84,11 +83,6 @@ document.querySelector("#translate").addEventListener('click', function(e){
     textbox.style.display = "block";
   } else {
     textbox.style.display = "none"
-  }
-  if(transl.style.display === "none"){
-    transl.style.display = "block";
-  } else {
-    transl.style.display = "none";
   }
   
   if(google.style.display === "none"){
@@ -126,4 +120,3 @@ document.querySelector("#translate").addEventListener('click', function(e){
 //     document.msExitFullscreen();
 //   }
 // }
-
