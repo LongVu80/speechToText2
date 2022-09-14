@@ -3,7 +3,7 @@
   let speechRecognition = new SpeechRecognition();
   let final_transcript = " ";
 
-  speechRecognition.continuous = true;
+  speechRecognition.continuous = false;
   speechRecognition.interimResults = true;
 
   document.querySelector('#langs').addEventListener('change', function(e){
