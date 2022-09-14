@@ -6,6 +6,11 @@
   speechRecognition.continuous = true;
   speechRecognition.interimResults = true;
 
+  document.querySelector('#langs').addEventListener('change', function(e){
+    const option = e.target.value;
+    recognition.lang = option;   
+  })
+
   speechRecognition.onstart = () => {
     document.querySelector("#status").style.display = "block";
   };
@@ -47,11 +52,11 @@
     document.querySelector("#status").innerHTML =`Voice Recognition is on`
   };
 
-  document.querySelector("#stop").onclick = () => {
-    speechRecognition.stop();
-    document.querySelector("#status").innerHTML =`Press the Start Button`
-    // this.closeFullscreen()
-  };
+  // document.querySelector("#stop").onclick = () => {
+  //   speechRecognition.stop();
+  //   document.querySelector("#status").innerHTML =`Press the Start Button`
+  //   // this.closeFullscreen()
+  // };
 
   document.querySelector("#clear").onclick = () => {
     
@@ -65,7 +70,6 @@
 
 function googleTranslateElementInit() {
   new google.translate.TranslateElement({pageLanguage: 'en'}, 'google_translate_element');
-  
 }
 
 document.querySelector('#final').addEventListener('input', function(e){
@@ -78,7 +82,7 @@ document.querySelector("#translate").addEventListener('click', function(e){
   const toTranslate = document.querySelector("#toTranslate");
   const translate = document.querySelector("#translate");
 
-  e.preventDefault()
+  
   if(textbox.style.display === "none"){
     textbox.style.display = "block";
   } else {

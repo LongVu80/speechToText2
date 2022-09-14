@@ -7,8 +7,8 @@
     <title>Speech To Text</title>
   </head>
   <body class="container pt-5 bg-dark text-center">
-    <nav class="navbar navbar-expand-lg navbar-light bg-warning" style="padding-left: 20px;">
-      <a class="navbar-brand" href="#">Navbar</a>
+    <!-- <nav class="navbar navbar-expand-lg navbar-light bg-warning notranslate" style="padding-left: 20px;">
+      <a class="navbar-brand " href="#">Navbar</a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -18,31 +18,40 @@
             <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">Instruction</a>
+            <a class="nav-link" href="instruction.html">Instruction</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">About</a>
+            <a class="nav-link" href="about.html">About</a>
           </li>
         </ul>
       </div>
-    </nav>
+    </nav> -->
     <h2 class="mt-4 text-light notranslate">Speech To Text App With Translation</h2>
-    <p class="mt-4 text-primary">I created to Speech-To-Text app is to assist my daily communication. Hopefully, this can help you too. </p>
-    <p class="mt-4 text-primary">Once pressed Start button, the transcribe will keep continue until the you want to it to be stop. To Stop, press the Stop button 2 times or Clear button.</p>
-      <strong class="text-light">Transcribe: </strong><textarea id="final" class="form-control bg-dark text-light" style="border: 1px solid gray; border-radius: 8px;" cols="30" rows="10" name="final"></textarea>
+    <!-- <p class="mt-4 text-primary">I created to Speech-To-Text app is to assist my daily communication. Hopefully, this can help you too. </p>
+    <p class="mt-4 text-primary">Once pressed Start button, the transcribe will keep continue until the you want to it to be stop. To Stop, press the  <strong class="text-light notranslate">Clear</strong>.</p> -->
+      <strong class="text-light notranslate">Transcribe: </strong><textarea id="final" class="form-control bg-dark text-light" style="border: 1px solid gray; border-radius: 8px;" cols="30" rows="10" name="final"></textarea>
       <!-- <span id="final" class="text-light notranslate"></span>
       <span id="interim" class="text-primary notranslate" ></span> -->
     <div id="textbox" style="display: none;" class="text-left"></div>
       <div class="mt-4">
-      <button class="btn btn-success" id="start">Start</button>
-      <button class="btn btn-danger" id="stop">Stop X2</button>
+      <button class="btn btn-success notranslate" id="start">Start</button>
+      <!-- <button class="btn btn-danger notranslate" id="stop">Stop X2</button> -->
       <button class="btn btn-warning notranslate" id="clear">Clear</button>
+      <div class="langs">
+        <h4 class="text-light">Select Language:</h4>
+        <select name="" id="langs" class="bg-primary text-light notranslate">
+          <option value="en-US">English</option>
+          <option value="vi-VN">Vietnamese</option>
+          <option value="es-US">Spanish</option>
+          <option value="fil-PH">Filipino</option>
+        </select>
+      </div>
       <!-- <button onclick="openFullscreen()">full</button>
       <button onclick="closeFullscreen()">ex</button> -->
 
-      <p id="status" class="lead mt-3 text-light" >Press the Start Button</p>
-      <strong class="text-light" id="toTranslate">To Translate: </strong><button id="translate" class="btn btn-primary">Click me</button>
-      <div id="showTranslate" class="p-5" style="display: none;"><strong class="text-light">Translate to: </strong><div id="google_translate_element"></div></div>
+      <p id="status" class="lead mt-3 text-light notranslate" >Press the Start Button</p>
+      <strong class="text-light notranslate" id="toTranslate">To Translate: </strong><button id="translate" class="btn btn-primary notranslate">Click me</button>
+      <div id="showTranslate" class="p-5 notranslate" style="display: none;"><strong class="text-light">Translate to: </strong><div id="google_translate_element"></div></div>
       
     </div>
   </body>
